@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md col-12 col-md-10 offset-md-1">
+  <div id="about" class="q-pa-md col-12 col-md-10 offset-md-1">
     <q-card dark bordered class="bg-accent about-card">
       <q-card-section class="text-center">
         <div class="text-h6">About Me</div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md col-12 col-md-10 offset-md-1">
+  <div id="projects" class="q-pa-md col-12 col-md-10 offset-md-1">
     <div class="row">
       <q-card class="projectCard col-12 col-md-4 q-pa-sm">
         <q-img src="statics\snack-seriously.png">

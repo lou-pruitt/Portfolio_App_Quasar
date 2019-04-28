@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md col-12 col-md-10 offset-md-1">
+  <div id="skills" class="q-pa-md col-12 col-md-10 offset-md-1">
     <q-card flat bordered class="skills-card text-center">
       <q-card-section>
         <div class="text-h6">Skills / Tools</div>

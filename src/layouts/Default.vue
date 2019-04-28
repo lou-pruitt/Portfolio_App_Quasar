@@ -28,8 +28,7 @@
       >
         <q-scroll-area class="fit">
           <q-list v-for="(menuItem, index) in menuList" :key="index">
-
-            <q-item clickable v-ripple>
+            <q-item :to="`#${menuItem.link}`" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon :name="menuItem.icon" />
               </q-item-section>
@@ -55,16 +54,19 @@ const menuList = [
   {
     icon: 'fas fa-address-card',
     label: 'About',
+    link: 'about',
     separator: false
   },
   {
     icon: 'fas fa-toolbox',
     label: 'Skills/Tools',
+    link: 'skills',
     separator: false
   },
   {
     icon: 'fas fa-laptop-code',
     label: 'Projects',
+    link: 'projects',
     separator: false
   },
   {

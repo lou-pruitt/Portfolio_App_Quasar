@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-    <!-- Insert compontents here -->
+  <q-page class="row">
+    <app-header></app-header>
   </q-page>
 </template>
 
@@ -8,7 +8,11 @@
 </style>
 
 <script>
+import appHeader from 'components/Header.vue'
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  components: {
+    appHeader
+  }
 }
 </script>

@@ -85,8 +85,8 @@ export default {
       },
       {
         icon: 'fas fa-envelope',
-        label: 'Contact Me',
-        link: 'contact',
+        label: 'Contact',
+        link: 'mailTo:louPruitt.dev@gmail.com',
         separator: false,
         site: true
       },
@@ -119,7 +119,9 @@ export default {
   },
   methods: {
     linkTo: function (link) {
-      if (link.toElement.innerText === 'Github') {
+      if (link.toElement.innerText === 'Contact') {
+        window.open('mailTo:louPruitt.dev@gmail.com')
+      } else if (link.toElement.innerText === 'Github') {
         window.open('https://github.com/Chyort', '_blank')
       } else if (link.toElement.innerText === 'LinkedIn') {
         window.open('https://www.linkedin.com/in/herbert-luis-pruitt', '_blank')

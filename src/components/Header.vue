@@ -2,7 +2,8 @@
   <div class="q-pa-md col-12">
     <q-parallax>
       <template v-slot:media>
-        <img src="statics\hb-pier-focus.png">
+        <img v-if="$q.platform.is.mobile" src="statics\hb-pier-focus-mobile.png">
+        <img v-if="$q.platform.is.desktop" src="statics\hb-pier-focus.png">
       </template>
 
       <template v-slot:content="scope">

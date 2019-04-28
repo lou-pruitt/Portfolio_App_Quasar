@@ -27,17 +27,26 @@
         content-class="bg-secondary"
       >
         <q-scroll-area class="fit">
-          <q-list v-for="(menuItem, index) in menuList" :key="index">
-            <q-item :to="`#${menuItem.link}`" clickable v-ripple>
+          <q-list v-for="(pageItem, index) in pageList" :key="index">
+            <q-item v-if="!pageItem.site" :to="`#${pageItem.link}`" clickable v-ripple>
               <q-item-section avatar>
-                <q-icon :name="menuItem.icon" />
+                <q-icon :name="pageItem.icon" />
               </q-item-section>
               <q-item-section>
-                {{ menuItem.label }}
+                {{ pageItem.label }}
               </q-item-section>
             </q-item>
 
-           <q-separator v-if="menuItem.separator" />
+            <q-item v-if="pageItem.site" @click="linkTo" clickable v-ripple>
+              <q-item-section avatar>
+                <q-icon :name="pageItem.icon" />
+              </q-item-section>
+              <q-item-section>
+                {{ pageItem.label }}
+              </q-item-section>
+            </q-item>
+
+           <q-separator v-if="pageItem.separator" />
 
           </q-list>
         </q-scroll-area>
@@ -50,44 +59,55 @@
 </template>
 
 <script>
-const menuList = [
+const pageList = [
   {
     icon: 'fas fa-address-card',
     label: 'About',
     link: 'about',
-    separator: false
+    separator: false,
+    site: false
   },
   {
     icon: 'fas fa-toolbox',
     label: 'Skills/Tools',
     link: 'skills',
-    separator: false
+    separator: false,
+    site: false
   },
   {
     icon: 'fas fa-laptop-code',
     label: 'Projects',
     link: 'projects',
-    separator: false
+    separator: true,
+    site: false
   },
   {
     icon: 'fas fa-envelope',
     label: 'Contact Me',
-    separator: true
+    link: 'contact',
+    separator: false,
+    site: true
   },
   {
     icon: 'fab fa-github',
     label: 'Github',
-    separator: false
+    link: 'https://github.com/Chyort',
+    separator: false,
+    site: true
   },
   {
     icon: 'fab fa-linkedin',
     label: 'LinkedIn',
-    separator: false
+    link: 'linkedIn',
+    separator: false,
+    site: true
   },
   {
     icon: 'fas fa-graduation-cap',
     label: 'Education',
-    separator: true
+    link: 'learningFuze',
+    separator: true,
+    site: true
   }
 ]
 
@@ -95,7 +115,18 @@ export default {
   data () {
     return {
       drawer: true,
-      menuList
+      pageList
+    }
+  },
+  methods: {
+    linkTo: function () {
+      window.open('https://github.com/Chyort', '_blank')
+    },
+    linkedIn: function () {
+      window.open('www.linkedin.com/in/herbert-luis-pruitt', '_blank')
+    },
+    fuze: function () {
+      window.open('https://learningfuze.com/about-us', '_blank')
     }
   }
 }

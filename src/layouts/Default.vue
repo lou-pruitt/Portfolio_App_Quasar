@@ -27,7 +27,7 @@
         content-class="bg-secondary"
       >
         <q-scroll-area class="fit">
-          <q-list v-for="(pageItem, index) in pageList" :key="index">
+          <q-list v-for="(pageItem, link) in pageList" :key="link">
             <q-item v-if="!pageItem.site" :to="`#${pageItem.link}`" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon :name="pageItem.icon" />
@@ -37,7 +37,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item v-if="pageItem.site" @click="linkTo" clickable v-ripple>
+            <q-item v-else-if="pageItem.site" @click="linkTo" clickable v-ripple>
               <q-item-section avatar>
                 <q-icon :name="pageItem.icon" />
               </q-item-section>
@@ -59,74 +59,73 @@
 </template>
 
 <script>
-const pageList = [
-  {
-    icon: 'fas fa-address-card',
-    label: 'About',
-    link: 'about',
-    separator: false,
-    site: false
-  },
-  {
-    icon: 'fas fa-toolbox',
-    label: 'Skills/Tools',
-    link: 'skills',
-    separator: false,
-    site: false
-  },
-  {
-    icon: 'fas fa-laptop-code',
-    label: 'Projects',
-    link: 'projects',
-    separator: true,
-    site: false
-  },
-  {
-    icon: 'fas fa-envelope',
-    label: 'Contact Me',
-    link: 'contact',
-    separator: false,
-    site: true
-  },
-  {
-    icon: 'fab fa-github',
-    label: 'Github',
-    link: 'https://github.com/Chyort',
-    separator: false,
-    site: true
-  },
-  {
-    icon: 'fab fa-linkedin',
-    label: 'LinkedIn',
-    link: 'linkedIn',
-    separator: false,
-    site: true
-  },
-  {
-    icon: 'fas fa-graduation-cap',
-    label: 'Education',
-    link: 'learningFuze',
-    separator: true,
-    site: true
-  }
-]
-
 export default {
   data () {
+    const pageList = [
+      {
+        icon: 'fas fa-address-card',
+        label: 'About',
+        link: 'about',
+        separator: false,
+        site: false
+      },
+      {
+        icon: 'fas fa-toolbox',
+        label: 'Skills/Tools',
+        link: 'skills',
+        separator: false,
+        site: false
+      },
+      {
+        icon: 'fas fa-laptop-code',
+        label: 'Projects',
+        link: 'projects',
+        separator: true,
+        site: false
+      },
+      {
+        icon: 'fas fa-envelope',
+        label: 'Contact Me',
+        link: 'contact',
+        separator: false,
+        site: true
+      },
+      {
+        icon: 'fab fa-github',
+        label: 'Github',
+        link: 'https://github.com/Chyort',
+        separator: false,
+        site: true
+      },
+      {
+        icon: 'fab fa-linkedin',
+        label: 'LinkedIn',
+        link: 'www.linkedin.com/in/herbert-luis-pruitt',
+        separator: false,
+        site: true
+      },
+      {
+        icon: 'fas fa-graduation-cap',
+        label: 'Education',
+        link: 'learningFuze',
+        separator: true,
+        site: true
+      }
+    ]
     return {
       drawer: true,
       pageList
     }
   },
   methods: {
-    linkTo: function () {
-      window.open('https://github.com/Chyort', '_blank')
-    },
-    linkedIn: function () {
-      window.open('www.linkedin.com/in/herbert-luis-pruitt', '_blank')
-    },
-    fuze: function () {
-      window.open('https://learningfuze.com/about-us', '_blank')
+    linkTo: function (link) {
+      if (link.toElement.innerText === 'Github') {
+        window.open('https://github.com/Chyort', '_blank')
+      } else if (link.toElement.innerText === 'LinkedIn') {
+        window.open('https://www.linkedin.com/in/herbert-luis-pruitt', '_blank')
+      } else if (link.toElement.innerText === 'Education') {
+        window.open('https://learningfuze.com/about-us', '_blank')
+      }
     }
   }
 }

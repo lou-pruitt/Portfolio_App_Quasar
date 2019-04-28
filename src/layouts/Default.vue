@@ -23,7 +23,7 @@
         :width="200"
         :breakpoint="500"
         show-if-above
-        bordered
+        elevated
         content-class="bg-secondary"
       >
         <q-scroll-area class="fit">

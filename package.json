@@ -2,7 +2,7 @@
   "name": "portfolio_app",
   "version": "0.0.1",
   "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "productName": "Lou Pruitt - Portfolio",
   "cordovaId": "org.cordova.quasar.app",
   "author": "Lou Pruitt <Lpruitt2004@gmail.com>",
   "private": true,

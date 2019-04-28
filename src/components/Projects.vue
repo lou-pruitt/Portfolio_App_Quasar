@@ -1,45 +1,53 @@
 <template>
   <div id="projects" class="q-pa-md col-12 col-md-10 offset-md-1">
-    <div class="row">
-      <q-card class="projectCard col-12 col-md-4 q-pa-sm">
-        <q-img src="statics\snack-seriously.png">
-          <div class="absolute-bottom">
-            <div class="text-h6">SnackSeriously.com</div>
-            <div class="text-subtitle2">Find a snack based on cravings and allergies</div>
-          </div>
-        </q-img>
-        <q-card-actions>
-          <q-btn flat>Try it</q-btn>
-          <q-btn flat>Github</q-btn>
-        </q-card-actions>
-      </q-card>
+    <q-card flat bordered class="skills-card text-center">
+      <q-card-section>
+        <div class="text-h6">Projects</div>
+      </q-card-section>
 
-      <q-card class="projectCard col-12 col-md-4 q-pa-sm">
-        <q-img src="statics\calculator.png">
-          <div class="absolute-bottom">
-            <div class="text-h6">Calculator</div>
-            <div class="text-subtitle2">Basic calculator</div>
-          </div>
-        </q-img>
-        <q-card-actions>
-          <q-btn flat>Try it</q-btn>
-          <q-btn flat>Github</q-btn>
-        </q-card-actions>
-      </q-card>
+      <q-separator color="blue" inset/>
 
-      <q-card class="projectCard col-12 col-md-4 q-pa-sm">
-        <q-img src="statics\match.png">
-          <div class="absolute-bottom">
-            <div class="text-h6">Match The Cats</div>
-            <div class="text-subtitle2">Memory matching game with cats</div>
-          </div>
-        </q-img>
-        <q-card-actions>
-          <q-btn flat>Try it</q-btn>
-          <q-btn flat>Github</q-btn>
-        </q-card-actions>
-      </q-card>
-    </div>
+      <div class="row">
+        <q-card class="projectCard col-12 col-md-4 q-pa-sm">
+          <q-img src="statics\snack-seriously.png">
+            <div class="absolute-bottom">
+              <div class="text-h6">SnackSeriously.com</div>
+              <div class="text-subtitle2">Find a snack based on cravings and allergies</div>
+            </div>
+          </q-img>
+          <q-card-actions>
+            <q-btn flat>Try it</q-btn>
+            <q-btn flat>Github</q-btn>
+          </q-card-actions>
+        </q-card>
+
+        <q-card class="projectCard col-12 col-md-4 q-pa-sm">
+          <q-img src="statics\calculator.png">
+            <div class="absolute-bottom">
+              <div class="text-h6">Calculator</div>
+              <div class="text-subtitle2">Basic calculator</div>
+            </div>
+          </q-img>
+          <q-card-actions>
+            <q-btn flat>Try it</q-btn>
+            <q-btn flat>Github</q-btn>
+          </q-card-actions>
+        </q-card>
+
+        <q-card class="projectCard col-12 col-md-4 q-pa-sm">
+          <q-img src="statics\match.png">
+            <div class="absolute-bottom">
+              <div class="text-h6">Match The Cats</div>
+              <div class="text-subtitle2">Memory matching game with cats</div>
+            </div>
+          </q-img>
+          <q-card-actions>
+            <q-btn flat>Try it</q-btn>
+            <q-btn flat>Github</q-btn>
+          </q-card-actions>
+        </q-card>
+      </div>
+    </q-card>
   </div>
 </template>
 

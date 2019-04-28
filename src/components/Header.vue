@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md col">
+  <div class="q-pa-md col-12">
     <q-parallax>
       <template v-slot:media>
         <img src="statics\hb-pier-focus.png">

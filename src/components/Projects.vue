@@ -16,8 +16,8 @@
             </div>
           </q-img>
           <q-card-actions>
-            <q-btn flat>Try it</q-btn>
-            <q-btn flat>Github</q-btn>
+            <q-btn @click="snackLink" flat>Try it</q-btn>
+            <q-btn @click="snackGithub" flat>Github</q-btn>
           </q-card-actions>
         </q-card>
 
@@ -32,6 +32,7 @@
             <q-btn flat>Try it</q-btn>
             <q-btn flat>Github</q-btn>
           </q-card-actions>
+          <div class="text-center">Links coming soon</div>
         </q-card>
 
         <q-card class="projectCard col-12 col-md-4 q-pa-sm">
@@ -45,6 +46,7 @@
             <q-btn flat>Try it</q-btn>
             <q-btn flat>Github</q-btn>
           </q-card-actions>
+          <div class="text-center">Links coming soon</div>
         </q-card>
       </div>
     </q-card>
@@ -55,5 +57,14 @@
 </style>
 
 <script>
-export default {}
+export default {
+  methods: {
+    snackLink: function () {
+      window.open('https://snackseriously.com/', '_blank')
+    },
+    snackGithub: function () {
+      window.open('https://github.com/Patriciadburns1/snack_seriously', '_blank')
+    }
+  }
+}
 </script>

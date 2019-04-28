@@ -65,6 +65,11 @@ const menuList = [
   {
     icon: 'fas fa-laptop-code',
     label: 'Projects',
+    separator: false
+  },
+  {
+    icon: 'fas fa-envelope',
+    label: 'Contact Me',
     separator: true
   },
   {
@@ -75,12 +80,12 @@ const menuList = [
   {
     icon: 'fab fa-linkedin',
     label: 'LinkedIn',
-    separator: true
+    separator: false
   },
   {
-    icon: 'fas fa-envelope',
-    label: 'Contact Me',
-    separator: false
+    icon: 'fas fa-graduation-cap',
+    label: 'Education',
+    separator: true
   }
 ]
 

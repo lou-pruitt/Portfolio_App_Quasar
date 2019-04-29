@@ -745,7 +745,7 @@
   resolved "https://registry.yarnpkg.com/@positron/stack-trace/-/stack-trace-1.0.0.tgz#14fcc712a530038ef9be1ce6952315a839f466a8"
   integrity sha1-FPzHEqUwA475vhzmlSMVqDn0Zqg=
 
-"@quasar/app@^1.0.0-beta.0":
+"@quasar/app@^1.0.0-beta.20":
   version "1.0.0-beta.20"
   resolved "https://registry.yarnpkg.com/@quasar/app/-/app-1.0.0-beta.20.tgz#536c711c14dd7f929a81bcf1beb12cd9e2dad314"
   integrity sha512-nG5u5uM5QU61UZDku16mLOv8OrZpWLuMvJo+MXM8HY2+tztUcSULnXqScFc0mJIEah970fZiP5Iah+24b9oNsg==
@@ -837,7 +837,7 @@
     babel-plugin-dynamic-import-node "2.2.0"
     core-js "2.6.5"
 
-"@quasar/extras@^1.0.0":
+"@quasar/extras@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@quasar/extras/-/extras-1.1.1.tgz#f514bf5108c5de964949aaa336ba65266a25fd88"
   integrity sha512-n9aQ9N9GBaRF15v3Rm5QDoeLOHFzjQ874f+54TthWmaQvx/8DV6fG/bwLgA6AjLUIZJs3ogm4J1KqWO+4zSg1g==
@@ -5899,7 +5899,7 @@ qs@6.5.2:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
 
-quasar@^1.0.0-beta.0:
+quasar@^1.0.0-beta.19:
   version "1.0.0-beta.19"
   resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.0.0-beta.19.tgz#e835da672f027fd87f7a0d448b2235ffdab044c9"
   integrity sha512-8DSET+Jsoi7QvUXZuFxt1yB3tSR2uuk5Sc24vfrBQGSDzUqHJcxxvwrs4RT7zy3u96iAnWIG4hnNRw5X6/JXXw==

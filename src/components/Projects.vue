@@ -12,12 +12,12 @@
           <q-img src="statics\snack-seriously.png">
             <div class="absolute-bottom">
               <div class="text-h6">SnackSeriously.com</div>
-              <div class="text-subtitle2">Find a snack based on cravings and allergies</div>
+              <div class="text-subtitle2">Find a snack</div>
             </div>
           </q-img>
           <q-card-actions>
-            <q-btn @click="snackLink" flat>Try it</q-btn>
-            <q-btn @click="snackGithub" flat>Github</q-btn>
+            <q-btn @click="snackLink" glossy>Try it</q-btn>
+            <q-btn @click="snackGithub" glossy>Github</q-btn>
           </q-card-actions>
         </q-card>
 
@@ -29,8 +29,8 @@
             </div>
           </q-img>
           <q-card-actions>
-            <q-btn flat>Try it</q-btn>
-            <q-btn flat>Github</q-btn>
+            <q-btn to="calculator" glossy>Try it</q-btn>
+            <q-btn glossy>Github</q-btn>
           </q-card-actions>
           <div class="text-center">Links coming soon</div>
         </q-card>
@@ -43,8 +43,8 @@
             </div>
           </q-img>
           <q-card-actions>
-            <q-btn flat>Try it</q-btn>
-            <q-btn flat>Github</q-btn>
+            <q-btn glossy>Try it</q-btn>
+            <q-btn glossy>Github</q-btn>
           </q-card-actions>
           <div class="text-center">Links coming soon</div>
         </q-card>

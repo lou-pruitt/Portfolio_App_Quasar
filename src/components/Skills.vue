@@ -7,7 +7,7 @@
 
       <q-separator color="blue" inset/>
 
-      <q-card-section class="row">
+      <q-card-section class="row justify-around">
         <div class="col-lg-2 col-md-3 col-sm-4 col-4 mt-4">
           <i class="devicon-html5-plain-wordmark colored"></i>
         </div>

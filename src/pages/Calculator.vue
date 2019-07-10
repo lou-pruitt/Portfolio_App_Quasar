@@ -4,7 +4,8 @@
     <div class="row">
       <q-card id="calculatorCard" class="bg-grey text-white col-12">
         <q-card-section>
-          <div>{{ display }}</div>
+          <!-- <div>{{ display }}</div> -->
+          <input type="text" :value="display" class="display" disabled>
         </q-card-section>
 
         <q-card-actions class="row btnContainer">
@@ -139,6 +140,7 @@ export default {
           }
         }
       }
+      this.equation = [this.display]
       console.log(this.equation)
     }
   }

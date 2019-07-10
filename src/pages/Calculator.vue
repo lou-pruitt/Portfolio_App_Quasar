@@ -12,34 +12,34 @@
             <div class="btnRow row justify-between">
               <q-btn @click="allClear" class="col-4 ac">AC</q-btn>
               <q-btn @click="clear" class="col-4 c">C</q-btn>
-              <q-btn class="col-3 operator">/</q-btn>
+              <q-btn @click="operator" class="col-3 operator">/</q-btn>
             </div>
           </div>
 
           <div class="col-12">
             <div class="btnRow row">
-              <q-btn @click="seven" class="col-3 number">7</q-btn>
-              <q-btn @click="eight" class="col-3 number">8</q-btn>
-              <q-btn @click="nine" class="col-3 number">9</q-btn>
-              <q-btn class="col-3 operator">*</q-btn>
+              <q-btn @click="number" class="col-3 number">7</q-btn>
+              <q-btn @click="number" class="col-3 number">8</q-btn>
+              <q-btn @click="number" class="col-3 number">9</q-btn>
+              <q-btn @click="operator" class="col-3 operator">*</q-btn>
             </div>
           </div>
 
           <div class="col-12">
             <div class="btnRow row">
-              <q-btn @click="four" class="col-3 number">4</q-btn>
-              <q-btn @click="five" class="col-3 number">5</q-btn>
-              <q-btn @click="six" class="col-3 number">6</q-btn>
-              <q-btn class="col-3 operator">-</q-btn>
+              <q-btn @click="number" class="col-3 number">4</q-btn>
+              <q-btn @click="number" class="col-3 number">5</q-btn>
+              <q-btn @click="number" class="col-3 number">6</q-btn>
+              <q-btn @click="operator" class="col-3 operator">-</q-btn>
             </div>
           </div>
 
           <div class="col-12">
             <div class="btnRow row">
-              <q-btn @click="one" class="col-3 number">1</q-btn>
-              <q-btn @click="two" class="col-3 number">2</q-btn>
-              <q-btn @click="three" class="col-3 number">3</q-btn>
-              <q-btn class="col-3 operator">+</q-btn>
+              <q-btn @click="number" class="col-3 number">1</q-btn>
+              <q-btn @click="number" class="col-3 number">2</q-btn>
+              <q-btn @click="number" class="col-3 number">3</q-btn>
+              <q-btn @click="operator" class="col-3 operator">+</q-btn>
             </div>
           </div>
 
@@ -47,7 +47,7 @@
             <div class="btnRow row">
               <q-btn @click="zero" class="col-6 number">0</q-btn>
               <q-btn class="col-3 decimal">.</q-btn>
-              <q-btn class="col-3 equals">=</q-btn>
+              <q-btn @click="equals" class="col-3 equals">=</q-btn>
             </div>
           </div>
         </q-card-actions>
@@ -72,79 +72,74 @@
 export default {
   data: function () {
     return {
-      display: '0'
+      display: 0,
+      equation: []
     }
   },
   methods: {
     allClear () {
-      this.display = '0'
+      this.display = 0
+      this.equation = []
     },
     clear () {
-      if (this.display.length === 1 || this.display === '0') {
-        this.display = '0'
+      if (this.display.length === 1 || this.display === 0) {
+        this.display = 0
         return
       }
       this.display = this.display.substring(0, this.display.length - 1)
     },
-    one () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '1'
+    operator (value) {
+      console.log('Operator clicked', value.target.innerText)
+      this.equation.push(value.target.innerText)
+      this.display += value.target.innerText
+      console.log(this.equation)
     },
-    two () {
-      if (this.display === '0') {
+    number (value) {
+      if (this.display === 0) {
         this.display = ''
       }
-      this.display += '2'
-    },
-    three () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '3'
-    },
-    four () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '4'
-    },
-    five () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '5'
-    },
-    six () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '6'
-    },
-    seven () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '7'
-    },
-    eight () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '8'
-    },
-    nine () {
-      if (this.display === '0') {
-        this.display = ''
-      }
-      this.display += '0'
+      this.display += value.target.innerText
+      let strToNum = parseInt(value.target.innerText)
+      this.equation.push(strToNum)
+      console.log(this.equation)
     },
     zero () {
-      if (this.display === '0') {
-        return
+      if (this.display === 0) {
+        this.display = 0
+      } else {
+        this.display += 0
+        this.equation.push(0)
       }
-      this.display += '0'
+      console.log(this.equation)
+    },
+    equals () {
+      for (let index = 0; index < this.equation.length; index++) {
+        const solve = this.equation[index]
+        if (isNaN(solve)) {
+          switch (solve) {
+            case '+':
+              this.display = this.equation[0] + this.equation[2]
+              console.log('add switch', this.equation[0] + this.equation[2])
+              break
+            case '-':
+              this.display = this.equation[0] - this.equation[2]
+              // code block
+              break
+            case '*':
+              this.display = this.equation[0] * this.equation[2]
+              // code block
+              break
+            case '/':
+              this.display = this.equation[0] / this.equation[2]
+              // code block
+              break
+            default:
+              this.display = 'error'
+              // code block
+          }
+        }
+      }
+      console.log(this.equation)
     }
   }
 }

@@ -96,11 +96,12 @@ export default {
       console.log(this.equation)
     },
     number (value) {
+      let numInput = value.target.innerText
       if (this.display === 0) {
         this.display = ''
       }
-      this.display += value.target.innerText
-      let strToNum = parseInt(value.target.innerText)
+      this.display += numInput
+      let strToNum = parseInt(numInput)
       this.equation.push(strToNum)
       console.log(this.equation)
     },

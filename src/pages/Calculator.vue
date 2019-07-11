@@ -74,7 +74,9 @@ export default {
   data: function () {
     return {
       display: 0,
-      equation: []
+      equation: [],
+      equationString: [],
+      input: undefined
     }
   },
   methods: {
@@ -96,14 +98,16 @@ export default {
       console.log(this.equation)
     },
     number (value) {
-      let numInput = value.target.innerText
-      if (this.display === 0) {
+      this.input = value.target.innerText
+      if (this.equation.length === 0) {
         this.display = ''
       }
-      this.display += numInput
-      let strToNum = parseInt(numInput)
-      this.equation.push(strToNum)
-      console.log(this.equation)
+      if (this.isLastInputNum(this.equation)) {
+        this.concatLastInput(this.equation, this.input)
+      } else {
+        this.equation.push(this.input)
+      }
+      this.updateDisplay()
     },
     zero () {
       if (this.display === 0) {
@@ -143,6 +147,16 @@ export default {
       }
       this.equation = [this.display]
       console.log(this.equation)
+    },
+    isLastInputNum () {
+      return !isNaN(this.equation[this.equation.length - 1])
+    },
+    concatLastInput () {
+      this.equation[this.equation.length - 1] += this.input
+    },
+    updateDisplay () {
+      this.equationString += this.input
+      this.display = this.equationString
     }
   }
 }

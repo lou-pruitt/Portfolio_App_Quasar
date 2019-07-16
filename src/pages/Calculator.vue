@@ -46,7 +46,7 @@
 
           <div class="col-12">
             <div class="btnRow row">
-              <q-btn @click="zero" class="col-6 number">0</q-btn>
+              <q-btn @click="number" class="col-6 number">0</q-btn>
               <q-btn class="col-3 decimal">.</q-btn>
               <q-btn @click="equals" class="col-3 equals">=</q-btn>
             </div>
@@ -83,6 +83,7 @@ export default {
     allClear () {
       this.display = 0
       this.equation = []
+      this.equationString = []
     },
     clear () {
       if (this.display.length === 1 || this.display === 0) {
@@ -92,10 +93,12 @@ export default {
       this.display = this.display.substring(0, this.display.length - 1)
     },
     operator (value) {
-      console.log('Operator clicked', value.target.innerText)
-      this.equation.push(value.target.innerText)
-      this.display += value.target.innerText
+      this.input = value.target.innerText
+      console.log('Operator clicked', this.input)
+      this.equation.push(this.input)
+      this.display += this.input
       console.log(this.equation)
+      this.updateDisplay()
     },
     number (value) {
       this.input = value.target.innerText
@@ -108,15 +111,6 @@ export default {
         this.equation.push(this.input)
       }
       this.updateDisplay()
-    },
-    zero () {
-      if (this.display === 0) {
-        this.display = 0
-      } else {
-        this.display += 0
-        this.equation.push(0)
-      }
-      console.log(this.equation)
     },
     equals () {
       for (let index = 0; index < this.equation.length; index++) {

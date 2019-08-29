@@ -11,7 +11,7 @@
         <q-card-actions class="row btnContainer">
           <div class="col-12">
             <div class="btnRow row justify-between">
-              <q-btn @click="allClear" class="col-4 ac">AC</q-btn>
+              <q-btn @click="allClear" v-on:keydown.Backspace='allClear' class="col-4 ac">AC</q-btn>
               <q-btn @click="clear" class="col-4 c">C</q-btn>
               <q-btn @click="operator" class="col-3 operator">/</q-btn>
             </div>
@@ -47,7 +47,7 @@
           <div class="col-12">
             <div class="btnRow row">
               <q-btn @click="number" class="col-6 number">0</q-btn>
-              <q-btn class="col-3 decimal">.</q-btn>
+              <q-btn @click="decimal" class="col-3 decimal">.</q-btn>
               <q-btn @click="equals" class="col-3 equals">=</q-btn>
             </div>
           </div>
@@ -71,12 +71,15 @@
 
 <script>
 export default {
-  data: function () {
+  data: function (inputArray, input) {
     return {
       display: 0,
       equation: [],
       equationString: [],
-      input: undefined
+      input: input,
+      inputArray: inputArray,
+      firstOperator: null,
+      firstOperand: null
     }
   },
   methods: {
@@ -84,26 +87,56 @@ export default {
       this.display = 0
       this.equation = []
       this.equationString = []
+      console.log('allClear')
     },
     clear () {
-      if (this.display.length === 1 || this.display === 0) {
-        this.display = 0
-        return
+      if (this.display.length === 1) {
+        this.allClear()
       }
-      this.display = this.display.substring(0, this.display.length - 1)
+      this.equation.pop()
+      this.updateDisplay()
     },
     operator (value) {
-      this.input = value.target.innerText
-      console.log('Operator clicked', this.input)
-      this.equation.push(this.input)
-      this.display += this.input
-      console.log(this.equation)
+      if (this.equation.length < 1) {
+        return
+      }
+      if (isNaN(value)) {
+        value = value.target.innerText
+        this.input = value
+      }
+      if (this.isLastInputNum(this.equation)) {
+        this.equation.push(value)
+      } else {
+        this.replaceLastInput(this.equation, this.input)
+      }
       this.updateDisplay()
+      console.log('operator executed')
+    },
+    replaceLastInput (equation, value) {
+      equation[equation.length - 1] = value
+      console.log('replaceLastInput executed')
     },
     number (value) {
       this.input = value.target.innerText
-      if (this.equation.length === 0) {
-        this.display = ''
+      if (typeof this.input !== 'string') {
+        this.input = value.target.innerText
+        this.input = value
+      }
+      if (this.isLastInputNum(this.equation) || this.equation[this.equation.length - 1] === '.') {
+        this.concatLastInput(this.equation, this.input)
+      } else {
+        this.equation.push(this.input)
+      }
+      this.updateDisplay()
+    },
+    decimal (value) {
+      this.input = value.target.innerText
+      console.log('decimal method')
+      if (this.hasDecimal(this.equation[this.equation.length - 1])) {
+        return
+      }
+      if (typeof this.input !== 'string') {
+        this.input = value.target.innerText
       }
       if (this.isLastInputNum(this.equation)) {
         this.concatLastInput(this.equation, this.input)
@@ -112,35 +145,52 @@ export default {
       }
       this.updateDisplay()
     },
+    hasDecimal (str) {
+      console.log('hasDecimal executed')
+      return str && str.toString().indexOf('.') > -1
+    },
     equals () {
-      for (let index = 0; index < this.equation.length; index++) {
-        const solve = this.equation[index]
-        if (isNaN(solve)) {
-          switch (solve) {
-            case '+':
-              this.display = this.equation[0] + this.equation[2]
-              console.log('add switch', this.equation[0] + this.equation[2])
-              break
-            case '-':
-              this.display = this.equation[0] - this.equation[2]
-              // code block
-              break
-            case '*':
-              this.display = this.equation[0] * this.equation[2]
-              // code block
-              break
-            case '/':
-              this.display = this.equation[0] / this.equation[2]
-              // code block
-              break
-            default:
-              this.display = 'error'
-              // code block
-          }
+      var operatorIndex = 1
+      if (this.equation.length === 1 && this.firstOperand && this.firstOperator) {
+        this.equation[0] = this.doMath(this.equation[0], this.firstOperand, this.firstOperator)
+      }
+      while (this.equation.length > 2) {
+        var input = this.equation[operatorIndex]
+        var input2 = this.equation[operatorIndex + 1]
+        if (isNaN(input) && input2) {
+          var operand1 = Number(this.equation[operatorIndex - 1])
+          var operand2 = Number(this.equation[operatorIndex + 1])
+          this.firstOperator = input
+          this.firstOperand = operand2
+          this.equation.splice(0, operatorIndex + 2, this.doMath(operand1, operand2, input))
         }
       }
-      this.equation = [this.display]
+      if (this.equation.length === 2) {
+        this.firstOperator = this.firstOperator ? this.firstOperator : this.equation[operatorIndex]
+        operand1 = Number(this.equation[0])
+        operand2 = Number(this.equation[0])
+        this.equation.splice(0, operatorIndex + 1, this.doMath(operand1, operand2, this.firstOperator))
+      }
+      this.updateDisplay()
+      console.log('equals executed')
+      this.display = [this.equation]
       console.log(this.equation)
+    },
+    doMath (x, y, operator) {
+      console.log('doMath executed')
+      switch (operator) {
+        case '+':
+          return x + y
+        case '-':
+          return x - y
+        case '/':
+          return x / y
+        case 'x':
+        case '*':
+          return x * y
+        default:
+          return 'invalid operator'
+      }
     },
     isLastInputNum () {
       return !isNaN(this.equation[this.equation.length - 1])
@@ -149,9 +199,19 @@ export default {
       this.equation[this.equation.length - 1] += this.input
     },
     updateDisplay () {
-      this.equationString += this.input
-      this.display = this.equationString
+      let result = this.equation.join(' ')
+      if (this.equation.length === 0) {
+        result = '0'
+      }
+      this.display = result
+      console.log(this.equation)
     }
+  },
+  mounted () {
+    window.addEventListener('keypress', function (e) {
+      var key = e.key
+      console.log(String.fromCharCode(key))
+    })
   }
 }
 </script>

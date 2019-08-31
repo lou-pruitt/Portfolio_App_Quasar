@@ -90,6 +90,9 @@ export default {
       console.log('allClear')
     },
     clear () {
+      if (this.errorCheck() && this.equation[0] !== undefined) { // Duplicate code 1
+        return
+      }
       if (this.display.length === 1) {
         this.allClear()
       }
@@ -97,6 +100,9 @@ export default {
       this.updateDisplay()
     },
     operator (value) {
+      if (this.errorCheck() && this.equation[0] !== undefined) { // Duplicate code 1
+        return
+      }
       if (this.equation.length < 1) {
         return
       }
@@ -117,6 +123,9 @@ export default {
       console.log('replaceLastInput executed')
     },
     number (value) {
+      if (this.errorCheck() && this.equation[0] !== undefined) { // Duplicate code 1
+        return
+      }
       this.input = value.target.innerText
       if (typeof this.input !== 'string') {
         this.input = value.target.innerText
@@ -130,8 +139,14 @@ export default {
       this.updateDisplay()
     },
     decimal (value) {
+      if (this.errorCheck() && this.equation[0] !== undefined) { // Duplicate code 1
+        return
+      }
       this.input = value.target.innerText
       console.log('decimal method')
+      if (this.equation[0] === undefined) {
+        this.equation[0] = 0
+      }
       if (this.hasDecimal(this.equation[this.equation.length - 1])) {
         return
       }
@@ -150,6 +165,9 @@ export default {
       return str && str.toString().indexOf('.') > -1
     },
     equals () {
+      if (this.errorCheck() && this.equation[0] !== undefined) { // Duplicate code 1
+        return
+      }
       var operatorIndex = 1
       if (this.equation.length === 1 && this.firstOperand && this.firstOperator) {
         this.equation[0] = this.doMath(this.equation[0], this.firstOperand, this.firstOperator)
@@ -175,6 +193,12 @@ export default {
       console.log('equals executed')
       this.display = [this.equation]
       console.log(this.equation)
+      if (!isFinite(this.equation[0])) {
+        this.error()
+        console.log('To infinity, ...and BEYOND!')
+      } else if (this.equation[0] === undefined) {
+        this.allClear()
+      }
     },
     doMath (x, y, operator) {
       console.log('doMath executed')
@@ -205,6 +229,13 @@ export default {
       }
       this.display = result
       console.log(this.equation)
+    },
+    error () {
+      this.display = 'Error'
+    },
+    errorCheck () {
+      console.log('equation[0] value: ', this.equation[0])
+      return !isFinite(this.equation[0])
     }
   },
   mounted () {
